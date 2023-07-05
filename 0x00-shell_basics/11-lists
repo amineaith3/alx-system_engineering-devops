@@ -1,6 +1,3 @@
 #!/bin/bash
-ls -al
-cd ..
-ls -al
-cd /boot
-ls -al
+ls -al; cd .. && ls -al; ls -al /boot
+
