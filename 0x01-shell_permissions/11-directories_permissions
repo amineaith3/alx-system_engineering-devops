@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type d -exec chmod +11 {} +
+find . -type d -exec chmod +111 {} +
