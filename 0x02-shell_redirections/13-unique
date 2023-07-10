@@ -1,0 +1,2 @@
+#!/bin/bash
+read -r -a words; printf "%s\n" "${words[@]}" | sort | uniq -u
