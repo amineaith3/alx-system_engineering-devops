@@ -1,7 +1,5 @@
-Host *
- IgnoreUnknown AddKeysToAgent,UseKeychain
- AddKeysToAgent yes
- UseKeychain yes
- IdentityFile ~/.ssh/id_rsa
- IdentityFile ~/.ssh/school
- PasswordAuthentication no
+Host school
+    HostName 18.204.13.241
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
