@@ -1,7 +1,17 @@
-#!/usr/bin/env bash
-#Install nginx web server and Redirection
+#!/bin/bash
+
+# Update package list and install Nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
+
+# Create a simple "Hello World!" page
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
-sudo sed -i '/^}$/i \ \n\tlocation \/redirect_me {return 301 https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ;}' /etc/nginx/sites-available/default
-sudo service nginx start
+
+# Configure redirection for /redirect_me
+sudo sed -i '/^}$/i \ \n\tlocation \/redirect_me { return 301 https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ; }' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply changes
+sudo service nginx restart
+
+# Check Nginx status
+sudo service nginx status
