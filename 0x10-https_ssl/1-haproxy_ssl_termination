@@ -36,7 +36,7 @@ defaults
 
 listen myserver
         bind *:80
-        bind *:443 ssl crt /etc/haproxy/ssl/www.nuux.tech.pem
+        bind *:443 ssl crt /etc/haproxy/ssl/www.sakuun.tech.pem
         redirect scheme https code 301 if !{ ssl_fc }
         balance roundrobin
         server server1 18.204.13.241:80 check
