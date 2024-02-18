@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Update the nginx configuration to run as the nginx user
+sed -i 's/user\s*nginx;/user nginx;/' /etc/nginx/nginx.conf
+
+# Ensure the nginx user owns the necessary directories
+chown -R nginx:nginx /var/www/html /var/lib/nginx /var/log/nginx
+
+# Start Nginx
+nginx -g "daemon off;"
