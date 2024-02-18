@@ -1,0 +1,9 @@
+# Allow incoming traffic on port 80 and 22
+sudo ufw allow 80/tcp
+sudo ufw allow 22/tcp
+
+# Add port forwarding rule to redirect traffic from port 8080 to port 80
+sudo ufw route allow proto tcp from any to any port 8080
+
+# Display ufw status to verify the configuration
+sudo ufw status
