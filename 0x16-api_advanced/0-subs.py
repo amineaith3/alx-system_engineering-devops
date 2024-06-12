@@ -8,6 +8,7 @@ If an invalid subreddit is given, the function should return 0
 import requests
 import sys
 
+
 def number_of_subscribers(subreddit):
     """
     Function that queries the Reddit API
@@ -22,7 +23,6 @@ def number_of_subscribers(subreddit):
         return req.json().get("data").get("subscribers")
     else:
         return 0
-    
 
 if __name__ == '__main__':
     number_of_subscribers = __import__('0-subs').number_of_subscribers
