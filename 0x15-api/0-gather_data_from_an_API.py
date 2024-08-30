@@ -1,8 +1,6 @@
-#!/usr/bin/python3
-'''Script'''
-
 import requests
 import sys
+
 
 def get_employee_todo_progress(employee_id):
     # API URLs
@@ -23,13 +21,19 @@ def get_employee_todo_progress(employee_id):
 
     # Calculate TODO progress
     total_tasks = len(todos)
-    completed_tasks = [todo for todo in todos if todo['completed']]
+    completed_tasks = [
+        todo for todo in todos if todo['completed']
+    ]
     number_of_done_tasks = len(completed_tasks)
 
     # Print the TODO progress
-    print(f"Employee {employee_name} is done with tasks({number_of_done_tasks}/{total_tasks}):")
+    print(
+        f"Employee {employee_name} is done with tasks"
+        f"({number_of_done_tasks}/{total_tasks}):"
+    )
     for task in completed_tasks:
         print(f"\t {task['title']}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
