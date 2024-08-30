@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""doc"""
+'''doc'''
 
 import requests
 import sys
