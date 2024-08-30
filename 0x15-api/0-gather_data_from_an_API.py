@@ -1,21 +1,45 @@
 #!/usr/bin/python3
-"""Returns to-do list information for a given employee ID."""
+'''Script'''
 
 import requests
 import sys
 
+def get_employee_todo_progress(employee_id):
+    # API URLs
+    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+
+    # Fetch employee data
+    user_response = requests.get(user_url)
+    if user_response.status_code != 200:
+        print(f"User with ID {employee_id} not found.")
+        return
+    employee = user_response.json()
+    employee_name = employee.get('name')
+
+    # Fetch TODO list data
+    todos_response = requests.get(todos_url)
+    todos = todos_response.json()
+
+    # Calculate TODO progress
+    total_tasks = len(todos)
+    completed_tasks = [todo for todo in todos if todo['completed']]
+    number_of_done_tasks = len(completed_tasks)
+
+    # Print the TODO progress
+    print(f"Employee {employee_name} is done with tasks({number_of_done_tasks}/{total_tasks}):")
+    for task in completed_tasks:
+        print(f"\t {task['title']}")
 
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com"
-    id = sys.argv[1]
+    if len(sys.argv) != 2:
+        print("Usage: python3 script.py <employee_id>")
+        sys.exit(1)
 
-    user = requests.get(f"{url}/users/{id}").json()
-    todos = requests.get(f"{url}/todos/?userId={id}").json()
+    try:
+        employee_id = int(sys.argv[1])
+    except ValueError:
+        print("Employee ID must be an integer.")
+        sys.exit(1)
 
-    completed = [t.get("title") for t in todos if t.get("completed") is True]
-
-    print(
-        f"Employee {user.get('name')} is done with tasks"
-        f"({len(completed)}/{len(todos)}):")
-
-    [print(f"\t {c}") for c in completed]
+    get_employee_todo_progress(employee_id)
