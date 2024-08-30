@@ -2,6 +2,9 @@
 """For a given employee ID, returns information about
 their TODO list progress"""
 
+import requests
+import sys
+
 def get_employee_todo_progress(employee_id):
     """Fetch and display employee's TODO list progress."""
     # API URLs
